@@ -16,28 +16,49 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Load gallery
-    const loadGallery = () => {
-        gallery.innerHTML = '';
-        for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i);
-            if (key.match(/^\d{4}-\d{2}-\d{2}$/)) {  // Date keys only
-                const entry = JSON.parse(localStorage.getItem(key));
-                const item = document.createElement('div');
-                item.classList.add('gallery-item');
-                const img = document.createElement('img');
-                img.src = entry.photo;
-                item.appendChild(img);
-                const dateP = document.createElement('p');
-                dateP.textContent = `Date: ${key}`;
-                item.appendChild(dateP);
-                const noteP = document.createElement('p');
-                noteP.textContent = entry.note || 'No note';
-                item.appendChild(noteP);
-                gallery.appendChild(item);
-            }
-        }
-    };
+const loadGallery = () => {
+    gallery.innerHTML = '';
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.match(/^\d{4}-\d{2}-\d{2}$/)) {
+            const entry = JSON.parse(localStorage.getItem(key));
+            const item = document.createElement('div');
+            item.classList.add('gallery-item');
 
+            const img = document.createElement('img');
+            img.src = entry.photo;
+            item.appendChild(img);
+
+            const dateP = document.createElement('p');
+            dateP.textContent = `Date: ${key}`;
+            item.appendChild(dateP);
+
+            const noteP = document.createElement('p');
+            noteP.textContent = entry.note || 'No note';
+            item.appendChild(noteP);
+
+            // Add delete button
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.style.backgroundColor = '#d32f2f';
+            deleteBtn.style.marginTop = '5px';
+            deleteBtn.onclick = () => {
+                if (confirm(`Delete photo from ${key}?`)) {
+                    localStorage.removeItem(key);
+                    loadGallery(); // refresh gallery
+                    // If deleting today's photo, show upload prompt again
+                    if (key === getTodayDate()) {
+                        statusMessage.textContent = 'Upload today\'s gratitude photo to continue.';
+                        gallerySection.style.display = 'none';
+                    }
+                }
+            };
+            item.appendChild(deleteBtn);
+
+            gallery.appendChild(item);
+        }
+    }
+};
     // Handle upload
     uploadBtn.addEventListener('click', () => {
         const today = getTodayDate();

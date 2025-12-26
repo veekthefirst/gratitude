@@ -140,3 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 3600000); // Check hourly
 });
+// Register service worker for full PWA/offline support
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('Service Worker registered', reg))
+      .catch(err => console.log('Service Worker registration failed', err));
+  });
+}

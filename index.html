@@ -14,10 +14,13 @@
         <p>Upload one photo every day that captures something positive. No skips!</p>
         
         <div id="upload-section">
-            <input type="file" id="photo-input" accept="image/*" capture="environment">
-            <textarea id="note-input" placeholder="Optional: What are you grateful for?"></textarea>
-            <button id="upload-btn">Upload Today's Photo</button>
-        </div>
+    <div class="custom-upload-btn">
+        <label for="photo-input">📸 Select or Take Today's Photo</label>
+    </div>
+    <input type="file" id="photo-input" accept="image/*">
+    <textarea id="note-input" placeholder="Optional: What are you grateful for today?"></textarea>
+    <button id="upload-btn">Upload Today's Photo</button>
+</div>
         
         <div id="status-message"></div>
         

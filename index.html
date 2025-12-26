@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Gratitude Photo Journal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Daily Gratitude Photo</h1>
+        <p>Upload one photo every day that captures something positive. No skips!</p>
+        
+        <div id="upload-section">
+            <input type="file" id="photo-input" accept="image/*" capture="environment">
+            <textarea id="note-input" placeholder="Optional: What are you grateful for?"></textarea>
+            <button id="upload-btn">Upload Today's Photo</button>
+        </div>
+        
+        <div id="status-message"></div>
+        
+        <div id="gallery-section" style="display: none;">
+            <h2>Your Gratitude Gallery</h2>
+            <div id="gallery"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

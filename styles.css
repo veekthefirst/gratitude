@@ -117,3 +117,27 @@ button:hover {
 .gallery-item button:hover {
     background: #b71c1c;
 }
+.custom-upload-btn {
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border: 2px dashed #4caf50;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: 0.3s;
+}
+
+.custom-upload-btn:hover {
+    background: #f1f8e9;
+    border-color: #388e3c;
+}
+
+.custom-upload-btn label {
+    cursor: pointer;
+    display: block;
+}
+
+#photo-input {
+    display: none;  /* Hide the ugly default input */
+}
